@@ -32,16 +32,17 @@ def execute(
 def get_black_args() -> Dict[str, Set[str]]:
     cmd = ["black", "--help"]
     args = {}
+    regex = re.compile(r"^\s*--?[^\s,](?:\s*,\s*--?[^\s,]+)*")
     try:
         for line, _ in execute(cmd):
             if isinstance(line, bytes):
                 line = line.decode("utf-8")
-            sub_args = re.findall(
-                r"^\s*(--?[^\s,]+)\s*,?\s*(--?[^\s,]+)?", line
-            )
+            sub_args = regex.findall(line)
             if not sub_args:
                 continue
-            sub_args = filter(None, sub_args[0])
+            sub_args = sub_args[0].split(",")
+            sub_args = map(str.strip, sub_args)
+            sub_args = filter(None, sub_args)
             sub_args = list(sub_args)
             for sub_arg in sub_args:
                 args[sub_arg] = set(sub_args)
