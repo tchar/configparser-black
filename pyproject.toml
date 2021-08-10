@@ -1,0 +1,45 @@
+[tool.black]
+line-length = 79
+
+[tool.poetry]
+packages = [
+    { include = "cblack" },
+]
+name = "configparser-black"
+version = "0.1.0"
+description = "A wrapper for black to connect with other python configuration files such as setup.cfg and tox.ini"
+authors = ["tchar"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/tchar/configparser-black"
+repository = "https://github.com/tchar/configparser-black"
+keywords = ["black", "lint", "config", "configuration", "setup.cfg", "tox.ini"]
+classifiers = [
+    "Environment :: Console",
+    "Environment :: Plugins",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.6.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+cblack = 'cblack:main'
