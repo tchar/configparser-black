@@ -32,7 +32,8 @@ def execute(
 def get_black_args() -> Dict[str, Set[str]]:
     cmd = ["black", "--help"]
     args = {}
-    regex = re.compile(r"^\s*--?[^\s,](?:\s*,\s*--?[^\s,]+)*")
+    arg_match = r"--?[a-zA-Z0-9_-]+"
+    regex = re.compile(f"^\s+{arg_match}(?:,\s{arg_match})?")
     try:
         for line, _ in execute(cmd):
             if isinstance(line, bytes):
